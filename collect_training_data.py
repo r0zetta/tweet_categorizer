@@ -4,7 +4,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy import API
 from tweepy import Cursor
-from authentication_keys import get_account_credentials
+from authentication_keys import get_account_sequential
 import os.path
 import random
 import time
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for name, classification in names.iteritems():
         print "Getting tweets for " + name + " (" + str(classification) + ") " + str(name_count) + "/" + str(num_names)
         name_count += 1
-        acct_name, consumer_key, consumer_secret, access_token, access_token_secret = get_account_credentials()
+        acct_name, consumer_key, consumer_secret, access_token, access_token_secret = get_account_sequential()
         auth = OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
         auth_api = API(auth)
@@ -87,5 +87,3 @@ if __name__ == '__main__':
         random.shuffle(lines)
         dump_lines(lines)
         print
-        time.sleep(300)
-
